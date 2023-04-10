@@ -5,51 +5,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XO</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>Tic Tac Toe</title>
     <style>
-       
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 48px;
+            color: #1a1a1a;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            justify-items: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 64px;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .cell:hover {
+            background-color: #f2f2f2;
+        }
+
+        .x {
+            color: #ff4c4c;
+        }
+
+        .o {
+            color: #4c4cff;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 24px;
+            color: #1a1a1a;
+        }
     </style>
 </head>
 
 <body>
+    <h1>Tic Tac Toe</h1>
+
+    <div class="board">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+
+    <div class="message"></div>
+
     <script>
-       
-    </script>
-    <center>
-        <h4 id="msg1">Joueur 1 a gagné ☻☻☻</h4>
-        <h4 id="msg2">Joueur 2 a gagné ☻☻☻</h4>
-        <div class="text">
-            <h1>Welcom to play</h1>
-        </div>
-        <p>Joueur 1 a joué Premier</p>
-        <div class="joueur">
-            <input type="text" name="J1" id="J1" placeholder="Joueur 1" class="J">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="J2" id="J2" placeholder="Joueur 2" class="J">
-        </div>
-        <br>
-        <div id="btnRejouer"></div>
-        <br>
+        const board = document.querySelector('.board');
+        const cells = board.querySelectorAll('.cell');
+        const message = document.querySelector('.message');
+        let currentPlayer = 'x';
+        let gameover = false;
 
+        function checkForWin() {
+            const winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
 
-        <div class="XO">
-            <span onclick="remplir('1')"><input type="text" name="1" id="1" class="inpXO" disabled></span>
-            <span onclick="remplir('2')"><input type="text" name="2" id="2" class="inpXO" disabled></span>
-            <span onclick="remplir('3')"><input type="text" name="3" id="3" class="inpXO" disabled></span>
-            <br>
-            <span onclick="remplir('4')"><input type="text" name="4" id="4" class="inpXO" disabled></span>
-            <span onclick="remplir('5')"><input type="text" name="5" id="5" class="inpXO" disabled></span>
-            <span onclick="remplir('6')"><input type="text" name="6" id="6" class="inpXO" disabled></span>
-            <br>
-            <span onclick="remplir('7')"><input type="text" name="7" id="7" class="inpXO" disabled></span>
-            <span onclick="remplir('8')"><input type="text" name="8" id="8" class="inpXO" disabled></span>
-            <span onclick="remplir('9')"><input type="text" name="9" id="9" class="inpXO" disabled></span>
-            <br>
-        </div>
-    </center>
-
-</body>
-
-</html>
+            for (let i = 0; i < winningCombinations.length
