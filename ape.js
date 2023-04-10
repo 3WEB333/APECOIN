@@ -113,3 +113,26 @@ squares.forEach(square => {
 });
 
 replayBtn.addEventListener("click", resetGame);
+
+
+function showPlayer() {
+  currentPlayerElement.textContent = currentPlayer === player1 ? "Player 1 (Coin)" : "Player 2 (Ape)";
+  currentPlayerElement.style.color = currentPlayer === player1 ? "#E0C91F" : "#8B4513";
+  currentPlayerSymbol = currentPlayer === player1 ? `<img src="https://i.imgur.com/9b6M2nM.png" alt="coin">` : `<img src="https://i.imgur.com/3biUzjE.png" alt="ape">`;
+}
+
+function handleClick(square, index) {
+  if (gameOver) {
+    return;
+  }
+
+  if (board[index] === "") {
+    board[index] = currentPlayerSymbol;
+    square.innerHTML = currentPlayerSymbol;
+    square.classList.add("active");
+
+    checkGameStatus();
+    togglePlayer();
+  }
+}
+
